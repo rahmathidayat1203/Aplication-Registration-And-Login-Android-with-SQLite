@@ -37,13 +37,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     Boolean checkuser = DB.checkusername(user);
-                    if (!checkuser){
-                        Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
-                    }
-                    else{
+                    Boolean checkpass = DB.checkpassword(pass);
+                    if (checkuser && checkpass){
                         Toast.makeText(LoginActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
                         startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this,"Login Failed",Toast.LENGTH_SHORT).show();
                     }
                 }
             }
